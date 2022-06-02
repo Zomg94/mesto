@@ -8,7 +8,7 @@
 
 **GitHub Pages**
 
-* [Ссылка проекта на GitHub]([https://zomg94.github.io/mesto/])
+* [Ссылка проекта на GitHub](https://zomg94.github.io/mesto/)
 
 
 **Figma**
