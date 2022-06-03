@@ -9,11 +9,12 @@
     line-height: 22px;
     text-align: center;
     cursor: pointer;
+    border: none;
     transition: opacity .3 ease;
 }
 
 .form__save-button:hover {
-    opacity: .6;
+    opacity: .8;
 }
 
 

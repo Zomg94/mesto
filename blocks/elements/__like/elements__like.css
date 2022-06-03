@@ -7,6 +7,7 @@
     border: none;
     align-self: center;
     cursor: pointer;
+    background-color: transparent;
     transition: opacity .3 ease;
 }
 

@@ -22,10 +22,10 @@
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
                         <p class="profile__description">Исследователь океана</p>
                     </div>
-                    <button class="profile__edit-button"></button>
+                    <button class="profile__edit-button" type="button"></button>
                 </div>
             </div>
-            <button class="profile__add-button"></button>
+            <button class="profile__add-button" type="button"></button>
         </section>
         <section class="elements">
             <ul class="elements__list">
@@ -34,7 +34,7 @@
                         <img class="elements__photo" src="./images/karachaevsk.jpg" alt="фото Карачаевск">
                         <figcaption class="elements__figcaption">
                             <h2 class="elements__title">Карачаевск</h2>
-                            <button class="elements__like elements__like_active"></button>
+                            <button class="elements__like elements__like_active" type="button"></button>
                         </figcaption>
                     </figure>
                 </li>
@@ -43,7 +43,7 @@
                         <img class="elements__photo" src="./images/elbrus.jpg" alt="фото Эльбрус">
                         <figcaption class="elements__figcaption">
                             <h2 class="elements__title">Гора Эльбрус</h2>
-                            <button class="elements__like elements__like_active"></button>
+                            <button class="elements__like elements__like_active" type="button"></button>
                         </figcaption>
                     </figure>
                 </li>
@@ -52,7 +52,7 @@
                         <img class="elements__photo" src="./images/dombai.jpg" alt="фото Домбай">
                         <figcaption class="elements__figcaption">
                             <h2 class="elements__title">Домбай</h2>
-                            <button class="elements__like elements__like_active"></button>
+                            <button class="elements__like elements__like_active" type="button"></button>
                         </figcaption>
                     </figure>
                 </li>
@@ -61,7 +61,7 @@
                         <img class="elements__photo" src="./images/elbrus2.jpg" alt="фото Эльбрус">
                         <figcaption class="elements__figcaption">
                             <h2 class="elements__title">Гора Эльбрус</h2>
-                            <button class="elements__like elements__like_active"></button>
+                            <button class="elements__like elements__like_active" type="button"></button>
                         </figcaption>
                     </figure>
                 </li>
@@ -70,7 +70,7 @@
                         <img class="elements__photo" src="./images/dombai2.jpg" alt="фото Домбай">
                         <figcaption class="elements__figcaption">
                             <h2 class="elements__title">Домбай</h2>
-                            <button class="elements__like elements__like_active"></button>
+                            <button class="elements__like elements__like_active" type="button"></button>
                         </figcaption>
                     </figure>
                 </li>
@@ -79,7 +79,7 @@
                         <img class="elements__photo" src="./images/karachaevo.jpg" alt="фото Карачаево">
                         <figcaption class="elements__figcaption">
                             <h2 class="elements__title">Карачаево-Черкессия</h2>
-                            <button class="elements__like elements__like_active"></button>
+                            <button class="elements__like elements__like_active" type="button"></button>
                         </figcaption>
                     </figure>
                 </li>
@@ -91,16 +91,16 @@
     </footer>
     <div class="popup popup_hidden">
         <div class="popup__content">
-            <button class="popup__close-button"></button>
-            <form class="form">
+            <button class="popup__close-button" type="button"></button>
+            <form class="form" name="edit-form">
                 <h3 class="form__title">Редактировать профиль</h3>
-                <input class="form__input form__input_type_name" type="text">
-                <input class="form__input form__input_type_about" type="text">
+                <input class="form__input form__input_type_name" type="text" name="input-name">
+                <input class="form__input form__input_type_about" type="text" name="input-about">
                 <button type="submit" class="form__save-button">Сохранить</button>
             </form>
         </div>
     </div>
-    <script src="./pages/index.js"></script>
+    <script src="./script/index.js"></script>
 </body>
 
 </html>
