@@ -3,11 +3,11 @@ const popup = document.querySelector('.popup');
 const popupCloseButton = document.querySelector('.popup__close-button');
 
 editButton.addEventListener('click', function () {
-    popup.classList.remove('popup__hidden');
+    popup.classList.remove('popup_hidden');
 });
 
 popupCloseButton.addEventListener('click', function () {
-    popup.classList.add('popup__hidden');
+    popup.classList.add('popup_hidden');
 });
 
 let profileName = document.querySelector('.profile__name');
@@ -23,7 +23,7 @@ function formSubmitHandler(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileDescription.textContent = aboutInput.value;
-    popup.classList.add('popup__hidden');
+    popup.classList.add('popup_hidden');
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
