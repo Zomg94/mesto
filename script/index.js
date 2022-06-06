@@ -9,6 +9,7 @@ let aboutInput = document.querySelector('.form__input_type_about')
 
 function openPopup() {
     popup.classList.remove('popup_hidden');
+    fillForm();
 };
 
 function closePopup() {
@@ -28,9 +29,6 @@ function formSubmitHandler(evt) {
     popup.classList.add('popup_hidden');
 }
 
-editButton.addEventListener('click', function () {
-    openPopup()
-    fillForm()
-});
+editButton.addEventListener('click', openPopup);
 popupCloseButton.addEventListener('click', closePopup);
 formElement.addEventListener('submit', formSubmitHandler);
