@@ -19,7 +19,7 @@ const cardUrl = document.querySelector('.elements__photo');
 const elements = document.querySelector('.elements__list');
 const elementsCard = document.querySelector('#card').content;
 const popupZoom = document.querySelector('.popup-zoom');
-
+const popupZoomCloseButton = document.querySelector('.popup-zoom__close-button');
 
 
 const initialCards = [
@@ -90,9 +90,9 @@ function formSubmitHandlerCard(evt) {
     cardElement.querySelector('.elements__photo').addEventListener('click', function () {
         const popupZoomPhoto = document.querySelector('.popup-zoom__photo');
         const popupZoomTitle = document.querySelector('.popup-zoom__title');
-        popupZoomPhoto.src = item.link;
-        popupZoomPhoto.alt = item.name;
-        popupZoomTitle.textContent = item.name;
+        popupZoomPhoto.src = cardUrlInput.value;
+        popupZoomPhoto.alt = cardNameInput.value;
+        popupZoomTitle.textContent = cardNameInput.value;
         openZoom();
     });
     elements.prepend(cardElement);
@@ -105,7 +105,12 @@ function openProfilePopup() {
 };
 
 function openZoom() {
-    popupZoom.classList.remove('popup_hidden');
+    popupZoom.classList.remove('popup-zoom_hidden');
+
+};
+
+function closeZoom() {
+    popupZoom.classList.add('popup-zoom_hidden');
 
 };
 
@@ -134,7 +139,7 @@ function formSubmitHandler(evt) {
     profileName.textContent = nameInput.value;
     profileDescription.textContent = aboutInput.value;
     popupProfile.classList.add('popup_hidden');
-}
+};
 
 editButton.addEventListener('click', openProfilePopup);
 popupProfileCloseButton.addEventListener('click', closeProfilePopup);
@@ -144,3 +149,5 @@ addButton.addEventListener('click', openCardPopup);
 popupCardCloseButton.addEventListener('click', closeCardPopup);
 
 cardFormElement.addEventListener('submit', formSubmitHandlerCard);
+
+popupZoomCloseButton.addEventListener('click', closeZoom);
