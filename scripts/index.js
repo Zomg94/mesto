@@ -21,6 +21,31 @@ const popupZoomCloseButton = document.querySelector('.popup-zoom__close-button')
 const popupZoomPhoto = document.querySelector('.popup-zoom__photo');
 const popupZoomTitle = document.querySelector('.popup-zoom__title');
 
+const closePopupEsc = (evt) => {
+    popup = document.querySelector('.popup_opened');
+    if (evt.code === "Escape") {
+        closePopup(popup);
+    }
+}
+
+const closePopupOverlay = (evt) => {
+    if (evt.target.classList.contains("popup_opened")) {
+      closePopup(evt.target);
+    }
+ }
+
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupEsc);
+    popup.addEventListener("mousedown", closePopupOverlay);
+};
+
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupEsc);
+    popup.removeEventListener("click", closePopupOverlay);
+};
+
 function createCard(photoName, photoUrl) {
     const cardElement = elementsCard.querySelector('.elements__card').cloneNode(true);
     const cardElementPhoto = cardElement.querySelector('.elements__photo');
@@ -43,14 +68,6 @@ function createCard(photoName, photoUrl) {
         openPopup(popupZoom);
     })
     return cardElement;
-};
-
-function openPopup(popup) {
-    popup.classList.remove('popup_hidden');
-};
-
-function closePopup(popup) {
-    popup.classList.add('popup_hidden');
 };
 
 function submitEditProfileForm(evt) {
@@ -87,6 +104,8 @@ editButton.addEventListener('click', function () {
 });
 
 addButton.addEventListener('click', function () {
+    cardNameInput.value = "";
+    cardUrlInput.value = "";
     openPopup(popupCard);
 });
 
