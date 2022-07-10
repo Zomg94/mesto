@@ -24,7 +24,7 @@ const closeButtons = document.querySelectorAll('.popup__close-button');
 
 const closePopupEsc = (evt) => {
     if (evt.code === "Escape") {
-        popup = document.querySelector('.popup_opened');
+        const popup = document.querySelector('.popup_opened');
         closePopup(popup);
     }
 }
@@ -82,29 +82,29 @@ function submitAddCardForm(evt) {
     evt.preventDefault();
     elements.prepend(createCard(cardNameInput.value, cardUrlInput.value));
     evt.target.reset()
-    updateSaveButton(popupCard);
-    updateInputError(popupCard);
+    updateSaveButton(popupCard, validationConfig);
+    updateInputError(popupCard, validationConfig);
     closePopup(popupCard);
 };
 
 function fillInEditProfileFormInputs() {
     nameInput.value = profileName.textContent;
     aboutInput.value = profileDescription.textContent;
-    updateSaveButton(popupProfile);
-    updateInputError(popupProfile);
+    updateSaveButton(popupProfile, validationConfig);
+    updateInputError(popupProfile, validationConfig);
 };
 
-const updateSaveButton = (popup) => {
-    const buttonElement = popup.querySelector(validationConfig.submitButtonSelector);
-    const inputList = Array.from(popup.querySelectorAll(validationConfig.inputSelector));
-    toggleButtonState(inputList, buttonElement);
+const updateSaveButton = (popup, settings) => {
+    const buttonElement = popup.querySelector(settings.submitButtonSelector);
+    const inputList = Array.from(popup.querySelectorAll(settings.inputSelector));
+    toggleButtonState(inputList, buttonElement, settings);
 };
 
-const updateInputError = (popup) => {
-    const formElement = popup.querySelector(validationConfig.formSelector);
-    const inputList = Array.from(formElement.querySelectorAll(validationConfig.inputSelector));
+const updateInputError = (popup, settings) => {
+    const formElement = popup.querySelector(settings.formSelector);
+    const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
     inputList.forEach((inputElement) => {
-        hideInputError(formElement, inputElement);
+        hideInputError(formElement, inputElement, settings);
     });
 };
 
