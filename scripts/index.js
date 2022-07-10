@@ -20,19 +20,20 @@ const popupZoom = document.querySelector('.popup-zoom');
 const popupZoomCloseButton = document.querySelector('.popup-zoom__close-button');
 const popupZoomPhoto = document.querySelector('.popup-zoom__photo');
 const popupZoomTitle = document.querySelector('.popup-zoom__title');
+const closeButtons = document.querySelectorAll('.popup__close-button');
 
 const closePopupEsc = (evt) => {
-    popup = document.querySelector('.popup_opened');
     if (evt.code === "Escape") {
+        popup = document.querySelector('.popup_opened');
         closePopup(popup);
     }
 }
 
 const closePopupOverlay = (evt) => {
     if (evt.target.classList.contains("popup_opened")) {
-      closePopup(evt.target);
+        closePopup(evt.target);
     }
- }
+}
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
@@ -43,7 +44,7 @@ function openPopup(popup) {
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupEsc);
-    popup.removeEventListener("click", closePopupOverlay);
+    popup.removeEventListener("mousedown", closePopupOverlay);
 };
 
 function createCard(photoName, photoUrl) {
@@ -61,7 +62,7 @@ function createCard(photoName, photoUrl) {
         evt.target.closest('.elements__card').remove();
     });
 
-    cardElement.querySelector('.elements__photo').addEventListener('click', function () {
+    cardElementPhoto.addEventListener('click', function () {
         popupZoomPhoto.src = photoUrl;
         popupZoomPhoto.alt = photoName;
         popupZoomTitle.textContent = photoName;
@@ -72,26 +73,39 @@ function createCard(photoName, photoUrl) {
 
 function submitEditProfileForm(evt) {
     evt.preventDefault();
-
     profileName.textContent = nameInput.value;
     profileDescription.textContent = aboutInput.value;
-
     closePopup(popupProfile);
 };
 
 function submitAddCardForm(evt) {
     evt.preventDefault();
     elements.prepend(createCard(cardNameInput.value, cardUrlInput.value));
-
-    cardNameInput.value = "";
-    cardUrlInput.value = "";
-
+    evt.target.reset()
+    updateSaveButton(popupCard);
+    updateInputError(popupCard);
     closePopup(popupCard);
 };
 
 function fillInEditProfileFormInputs() {
     nameInput.value = profileName.textContent;
     aboutInput.value = profileDescription.textContent;
+    updateSaveButton(popupProfile);
+    updateInputError(popupProfile);
+};
+
+const updateSaveButton = (popup) => {
+    const buttonElement = popup.querySelector(validationConfig.submitButtonSelector);
+    const inputList = Array.from(popup.querySelectorAll(validationConfig.inputSelector));
+    toggleButtonState(inputList, buttonElement);
+};
+
+const updateInputError = (popup) => {
+    const formElement = popup.querySelector(validationConfig.formSelector);
+    const inputList = Array.from(formElement.querySelectorAll(validationConfig.inputSelector));
+    inputList.forEach((inputElement) => {
+        hideInputError(formElement, inputElement);
+    });
 };
 
 initialCards.forEach(function (item) {
@@ -104,21 +118,12 @@ editButton.addEventListener('click', function () {
 });
 
 addButton.addEventListener('click', function () {
-    cardNameInput.value = "";
-    cardUrlInput.value = "";
     openPopup(popupCard);
 });
 
-popupProfileCloseButton.addEventListener('click', function () {
-    closePopup(popupProfile);
-});
-
-popupCardCloseButton.addEventListener('click', function () {
-    closePopup(popupCard);
-});
-
-popupZoomCloseButton.addEventListener('click', function () {
-    closePopup(popupZoom);
+closeButtons.forEach((button) => {
+    const popup = button.closest('.popup');
+    button.addEventListener('click', () => closePopup(popup));
 });
 
 profileFormElement.addEventListener('submit', submitEditProfileForm);
